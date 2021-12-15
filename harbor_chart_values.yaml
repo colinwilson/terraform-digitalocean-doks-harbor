@@ -1,0 +1,58 @@
+expose:
+  type: clusterIP
+  tls:
+    enabled: false
+
+externalURL: ${harbor_ext_url}
+
+persistence:
+  imageChartStorage:
+    type: s3
+    s3:
+      region: us-east-1
+      bucket: ${do_spaces_bucket_name}
+      accesskey: ${do_spaces_access_key}
+      secretkey: ${do_spaces_secret_key}
+      regionendpoint: ${do_spaces_endpoint}
+
+portal:
+  replicas: 2
+
+core:
+  replicas: 2
+
+jobservice:
+  replicas: 2
+  jobLoggers:
+    - database
+
+registry:
+  replicas: 2
+
+chartmuseum:
+  replicas: 2
+
+notary:
+  server:
+    replicas: 2
+  signer:
+    replicas: 2
+
+database:
+  type: external
+  external:
+    host: ${pg_cluster_host}
+    port: ${pg_cluster_port}
+    username: ${pg_cluster_username}
+    password: ${pg_cluster_password}
+    coreDatabase: "registry"
+    notaryServerDatabase: "notary_server"
+    notarySignerDatabase: "notary_signer"
+    sslmode: "require"
+
+redis:
+  type: external
+  external:
+    addr: ${redis_addr}
+    password: ${redis_password}
+

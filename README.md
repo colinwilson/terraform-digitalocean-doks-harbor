@@ -1,0 +1,2 @@
+# Terraform Harbor on DOKS (DigitalOcean Kubernetes) Module
+A Terraform module to provision a highly available [Harbor Container Registry](https://goharbor.io/) on a DigitalOcean Kubernetes cluster (DOKS).
