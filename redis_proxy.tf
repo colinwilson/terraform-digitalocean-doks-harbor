@@ -3,7 +3,8 @@
 
 resource "kubernetes_service" "redis_proxy" {
   metadata {
-    name = "redis-proxy"
+    name      = "redis-proxy"
+    namespace = kubernetes_namespace.harbor.metadata.0.name
     labels = {
       app = "redis-proxy"
     }
@@ -22,7 +23,8 @@ resource "kubernetes_service" "redis_proxy" {
 
 resource "kubernetes_daemonset" "redis_proxy" {
   metadata {
-    name = "redis-proxy"
+    name      = "redis-proxy"
+    namespace = kubernetes_namespace.harbor.metadata.0.name
     labels = {
       app = "redis-proxy"
     }

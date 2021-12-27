@@ -1,18 +1,41 @@
+variable "doks_cluster_name" {
+  type        = string
+  description = "DOKS cluster name"
+}
+
 variable "harbor_chart_version" {
   type        = string
   description = "Harbor Helm chart version to install"
-  default     = "1.8.0"
+  default     = "1.8.1"
+}
+
+variable "harbor_cert_cn" {
+  type        = string
+  description = "Common name for the automatically generated Harbor TLS cert"
+  default     = "harbor.local"
 }
 
 variable "harbor_ext_url" {
   type        = string
   description = "Set Harbor's external URL"
-  default     = "https://core.harbor.domain"
+  default     = "https://harbor.local" # Use kubectl port-forward to test access to Harbor web UI
+}
+
+variable "harbor_admin_password" {
+  type        = string
+  description = "The initial password of the Harbor admin"
+  default     = "Harbor12345"
+}
+
+variable "firewall_databases" {
+  type        = bool
+  description = "Firewall both Postgres and Redis databases. Connections permitted from the specified DOKS cluster only"
+  default     = true
 }
 
 variable "redis_deployment" {
   type        = string
-  description = "Deploy Redis on the DOKS cluster (cluster), or a managed Redis (managed) or none (none)."
+  description = "Deploy Redis on the DOKS cluster, or a managed Redis (managed) or none (none)."
   default     = "managed"
   validation {
     condition     = length(regexall("^managed|cluster|none$", var.redis_deployment)) > 0
@@ -24,22 +47,6 @@ variable "redis_chart_version" {
   type        = string
   description = "Redis Helm chart version to install"
   default     = "15.6.4"
-}
-
-variable "region" {
-  type        = string
-  description = "Region in which to deploy Harbor. Default is fra1 (Frankfurt, Germany)"
-  default     = "fra1"
-  #   validation {
-  #     condition     = length(regexall("^nyc1|sfo1|nyc2|ams2|sgp1|lon1|nyc3|ams3|fra1|tor1|sfo2|blr1|sfo3$", var.region)) > 0
-  #     error_message = "Invalid region. Valid regions are nyc1, sfo1, nyc2, ams2, sgp1, lon1, nyc3, ams3, fra1, tor1, sfo2, blr1 or sfo3."
-  #   }
-}
-
-variable "vpc_uuid" {
-  type        = string
-  description = "The ID of the VPC where Harbor the resources will be deployed."
-  default     = null
 }
 
 variable "pg_cluster_id" {
@@ -115,18 +122,44 @@ variable "redis_password" {
   default     = null
 }
 
-variable "do_spaces_access_key" {
+variable "spaces_access_id" {
   type        = string
-  description = "DigitalOcean Spaces Access Key"
+  description = "DigitalOcean Spaces Access ID"
 }
 
-variable "do_spaces_secret_key" {
+variable "spaces_secret_key" {
   type        = string
   description = "DigitalOcean Spaces Secret Key"
 }
 
-variable "do_spaces_endpoint" {
-  type        = string
-  description = "DigitalOcean Spaces Endpoint"
-  default     = "https://api.digitalocean.com"
-}
+# variable "spaces_name" {
+#   type        = string
+#   description = "DigitalOcean Spaces bucket name."
+#   default     = null
+# }
+
+# variable "spaces_region" {
+#   type        = string
+#   description = "Region in which to deploy Spaces storage for Harbor. Default is the same region your DOKS cluster is located in."
+#   default     = "fra1"
+#   validation {
+#     condition     = length(regexall("^nyc3|ams3|fra1|sgp1|sfo3$", var.spaces_region)) > 0
+#     error_message = "Invalid region. DigitalOcean Spaces are available in regions nyc3, sfo3, ams3, sgp1 & fra1."
+#   }
+# }
+
+# variable "spaces" {
+#   description = "DigitalOcean Spaces access credentials."
+#   type = map(
+#     object({
+#       access_id  = string
+#       secret_key = string
+#     })
+#   )
+# }
+
+# variable "spaces_endpoint" {
+#   type        = string
+#   description = "DigitalOcean Spaces Endpoint"
+#   default     = "https://api.digitalocean.com"
+# }
