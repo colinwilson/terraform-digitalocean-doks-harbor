@@ -1,24 +1,27 @@
 resource "digitalocean_database_user" "harbor" {
-  cluster_id = var.pg_cluster_id == null ? digitalocean_database_cluster.harbor_postgres.id : var.pg_cluster_id
+  cluster_id = local.postgres_cluster_id
   name       = var.database_user_pg
 }
 
 resource "digitalocean_database_db" "harbor_notaryserver" {
-  cluster_id = var.pg_cluster_id == null ? digitalocean_database_cluster.harbor_postgres.id : var.pg_cluster_id
+  cluster_id = local.postgres_cluster_id
   name       = "notary_server"
 }
 
 resource "digitalocean_database_db" "harbor_notarysigner" {
-  cluster_id = var.pg_cluster_id == null ? digitalocean_database_cluster.harbor_postgres.id : var.pg_cluster_id
+  cluster_id = local.postgres_cluster_id
   name       = "notary_signer"
 }
 
 resource "digitalocean_database_db" "harbor_registry" {
-  cluster_id = var.pg_cluster_id == null ? digitalocean_database_cluster.harbor_postgres.id : var.pg_cluster_id
+  cluster_id = local.postgres_cluster_id
   name       = "registry"
 }
 
 resource "digitalocean_database_cluster" "harbor_postgres" {
+
+  count = var.postgres_cluster_name == "" ? 1 : 0
+
   name                 = "harbor-postgres"
   engine               = "pg"
   version              = "13"
@@ -32,7 +35,7 @@ resource "digitalocean_database_firewall" "harbor_postgres" {
 
   count = var.firewall_databases == true ? 1 : 0
 
-  cluster_id = var.pg_cluster_id == null ? digitalocean_database_cluster.harbor_postgres.id : var.pg_cluster_id
+  cluster_id = local.postgres_cluster_id
   rule {
     type  = "k8s"
     value = data.digitalocean_kubernetes_cluster.harbor.id

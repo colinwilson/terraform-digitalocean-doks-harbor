@@ -54,7 +54,7 @@ resource "kubernetes_daemonset" "redis_proxy" {
             "-d",
             "-d",
             "TCP-LISTEN:6379,fork,reuseaddr",
-            "openssl:${digitalocean_database_cluster.harbor_redis.private_host}:${digitalocean_database_cluster.harbor_redis.port}",
+            "openssl:${local.redis_cluster_host}:${local.redis_cluster_port}",
           ]
 
           port {

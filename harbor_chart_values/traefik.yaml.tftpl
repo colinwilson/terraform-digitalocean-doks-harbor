@@ -1,13 +1,26 @@
 expose:
-  type: clusterIP
+  type: ingress
   tls:
-    auto:
-      commonName: ${harbor_cert_cn}
+    certSource: secret
+    secret:
+      secretName: ${harbor_tls_secret_name}
+      notarySecretName: ${harbor_tls_notary_secret_name}
+  ingress:
+    hosts:
+      core: harbor.${harbor_ext_url}
+      notary: notary.${harbor_ext_url}
+    annotations:
+      # Traefik 2.x Ingress Annotations
+      kubernetes.io/ingress.class: traefik
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+      # traefik.ingress.kubernetes.io/router.middlewares: harbor-redirect-to-https@kubernetescrd
 
-externalURL: ${harbor_ext_url}
+externalURL: https://harbor.${harbor_ext_url}
 
 persistence:
   imageChartStorage:
+    disableredirect: true
     type: s3
     s3:
       region: us-east-1

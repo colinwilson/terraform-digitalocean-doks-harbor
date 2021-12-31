@@ -1,5 +1,6 @@
 resource "digitalocean_database_cluster" "harbor_redis" {
-  #count = var.redis_deployment == "managed" ? 1 : 0
+
+  count = var.redis_cluster_name == "" ? 1 : 0
 
   name                 = "harbor-redis"
   engine               = "redis"
@@ -14,7 +15,7 @@ resource "digitalocean_database_firewall" "harbor_redis" {
 
   count = var.firewall_databases == true ? 1 : 0
 
-  cluster_id = var.redis_cluster_id == null ? digitalocean_database_cluster.harbor_redis.id : var.redis_cluster_id
+  cluster_id = local.redis_cluster_id
   rule {
     type  = "k8s"
     value = data.digitalocean_kubernetes_cluster.harbor.id

@@ -3,22 +3,63 @@ variable "doks_cluster_name" {
   description = "DOKS cluster name"
 }
 
+variable "postgres_cluster_name" {
+  type        = string
+  description = "Name of the existing Postgres Database Cluster"
+  default     = ""
+}
+
+variable "redis_cluster_name" {
+  type        = string
+  description = "Name of the existing Redis Database Cluster"
+  default     = ""
+}
+
 variable "harbor_chart_version" {
   type        = string
   description = "Harbor Helm chart version to install"
   default     = "1.8.1"
 }
 
+# Helm chart deployment can sometimes take longer than the default 5 minutes
+variable "harbor_chart_timeout_seconds" {
+  type    = number
+  default = 800 # 10 minutes
+}
+
+variable "harbor_expose_type" {
+  type        = string
+  description = "Set the method by which to expose the Harbor service."
+  default     = "clusterip"
+
+  validation {
+    condition     = length(regexall("^clusterip|ingress|traefik$", var.harbor_expose_type)) > 0
+    error_message = "Invalid Expose Type. Valid options are clusterip, ingress or traefik."
+  }
+}
+
 variable "harbor_cert_cn" {
   type        = string
   description = "Common name for the automatically generated Harbor TLS cert"
-  default     = "harbor.local"
+  default     = "local"
+}
+
+variable "harbor_tls_secret_name" {
+  type        = string
+  description = "The name of the TLS secret"
+  default     = ""
+}
+
+variable "harbor_tls_notary_secret_name" {
+  type        = string
+  description = "The name of the Notary TLS secret"
+  default     = ""
 }
 
 variable "harbor_ext_url" {
   type        = string
   description = "Set Harbor's external URL"
-  default     = "https://harbor.local" # Use kubectl port-forward to test access to Harbor web UI
+  default     = "local" # Use kubectl port-forward to test access to Harbor web UI
 }
 
 variable "harbor_admin_password" {
@@ -47,37 +88,6 @@ variable "redis_chart_version" {
   type        = string
   description = "Redis Helm chart version to install"
   default     = "15.6.4"
-}
-
-variable "pg_cluster_id" {
-  type        = string
-  description = "Postgres DB cluster ID"
-  default     = null
-}
-
-variable "pg_cluster_host" {
-  type        = string
-  description = "Postgres DB host IP/URL"
-  default     = null
-}
-
-variable "pg_cluster_port" {
-  type        = string
-  description = "Postgres DB port"
-  default     = null
-}
-
-variable "pg_cluster_password" {
-  type        = string
-  description = "Postgres DB password"
-  default     = null
-  sensitive   = true
-}
-
-variable "redis_cluster_id" {
-  type        = string
-  description = "Redis DB cluster ID"
-  default     = null
 }
 
 variable "database_user_pg" {
@@ -131,35 +141,3 @@ variable "spaces_secret_key" {
   type        = string
   description = "DigitalOcean Spaces Secret Key"
 }
-
-# variable "spaces_name" {
-#   type        = string
-#   description = "DigitalOcean Spaces bucket name."
-#   default     = null
-# }
-
-# variable "spaces_region" {
-#   type        = string
-#   description = "Region in which to deploy Spaces storage for Harbor. Default is the same region your DOKS cluster is located in."
-#   default     = "fra1"
-#   validation {
-#     condition     = length(regexall("^nyc3|ams3|fra1|sgp1|sfo3$", var.spaces_region)) > 0
-#     error_message = "Invalid region. DigitalOcean Spaces are available in regions nyc3, sfo3, ams3, sgp1 & fra1."
-#   }
-# }
-
-# variable "spaces" {
-#   description = "DigitalOcean Spaces access credentials."
-#   type = map(
-#     object({
-#       access_id  = string
-#       secret_key = string
-#     })
-#   )
-# }
-
-# variable "spaces_endpoint" {
-#   type        = string
-#   description = "DigitalOcean Spaces Endpoint"
-#   default     = "https://api.digitalocean.com"
-# }
