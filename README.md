@@ -38,12 +38,12 @@ The default deployment of this module provisions the below resources on an exist
 **4.** Managed Redis Database Cluster (single node)<br>
 **5.** Harbor Service (ClusterIP)<br>
 
-The module can also be configured to expose Harbor via Ingress with Traefik as the ingress controller and a [DigitalOcean Cloud Load Balancer](https://www.digitalocean.com/products/load-balancer/) (see this example TBA):
+The module can also be configured to expose Harbor via Ingress with Traefik as the ingress controller, a valid TLS certificate via cert-manager and a [DigitalOcean Cloud Load Balancer](https://www.digitalocean.com/products/load-balancer/) (see this example TBA):
 
 ![High Availability Harbor on DigitalOcean Kubernetes with Traefik Ingress Controller](https://res.cloudinary.com/qunux/image/upload/v1641020223/harbor_doks_architecture_v1.5_qsa44i.svg)
 
-**5.** Ingress Controller (e.g. Traefik) [optional]<br>
-**6.** DigitalOcean Cloud Load Balancer [optional]<br>
+**5.** Ingress Controller (e.g. Traefik)<br>
+**6.** DigitalOcean Cloud Load Balancer<br>
 
 ## Usage
 
