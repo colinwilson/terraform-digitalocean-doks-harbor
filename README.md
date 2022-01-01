@@ -54,7 +54,7 @@ module "harbor" {
 }
 ```
 
-*See the [examples directory]((./examples/)) for details & additional deployment scenarios*
+*See the [examples directory](./examples/) for details & additional deployment scenarios*
 
 Example output:
 ```
