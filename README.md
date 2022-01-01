@@ -27,11 +27,13 @@ A Terraform module to provision a highly available [Harbor Container Registry](h
 
 ## Architecture
 
+The default deployment of this module provisions the below resources on an existing DigitalOcean Kubernetes Cluster (**1**) (which itself can be provisioned by a [Terraform module](https://github.com/aigisuk/terraform-digitalocean-doks)).
+
 ![High Availability Harbor on DigitalOcean Kubernetes](https://res.cloudinary.com/qunux/image/upload/v1641020223/harbor_doks_architecture_v1.5_qsa44i.svg)
 
-1. DigitalOcean Kubernetes Cluster (DOKS)
-2. Spaces bucket (for image, chart & job log storage)
-3. Managed PostgreSQL Database Cluster
-4. Managed Redis Database Cluster
-5. Ingress Controller (e.g. Traefik) [optional]
-6. DigitalOcean Cloud Load Balancer
+**1.** DigitalOcean Kubernetes Cluster (DOKS)<br>
+**2.** Spaces bucket (for image, chart & job log storage)<br>
+**3.** Managed PostgreSQL Database Cluster (single node)<br>
+**4.** Managed Redis Database Cluster (single node)<br>
+**5.** Ingress Controller (e.g. Traefik) [optional]<br>
+**6.** DigitalOcean Cloud Load Balancer<br>

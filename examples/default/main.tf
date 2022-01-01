@@ -51,7 +51,7 @@ provider "helm" {
 
 
 module "harbor" {
-  source = "github.com/colinwilson/terraform-digitalocean-doks-harbor"
+  source = "colinwilson/doks-harbor/digitalocean"
 
   doks_cluster_name = var.doks_cluster_name
 
