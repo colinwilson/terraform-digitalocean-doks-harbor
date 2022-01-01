@@ -10,6 +10,7 @@ A Terraform module to provision a highly available [Harbor Container Registry](h
 * [x] Option to use existing Postgres & Redis clusters.
 * [x] Harbor exposed by `ClusterIP` (default).
 * [x] Expose Harbor by Ingress configured for use with Traefik.
+* [ ] Status post deployment via `outputs.tf`
 * [ ] Deploy `redis-proxy` DaemonSet pods only on nodes that require them.
 * [ ] Expose  Harbor via NodePort.
 * [ ] Expose Harbor via LoadBalancer.
@@ -37,3 +38,25 @@ The default deployment of this module provisions the below resources on an exist
 **4.** Managed Redis Database Cluster (single node)<br>
 **5.** Ingress Controller (e.g. Traefik) [optional]<br>
 **6.** DigitalOcean Cloud Load Balancer<br>
+
+## Usage
+
+Basic usage of this module is as follows:
+
+```
+module "harbor" {
+  source = "colinwilson/doks-harbor/digitalocean"
+
+  doks_cluster_name = var.doks_cluster_name
+
+  spaces_access_id  = var.spaces_access_id
+  spaces_secret_key = var.spaces_secret_key
+}
+```
+
+*See the [examples directory]((./examples/)) for details & additional deployment scenarios*
+
+Example output:
+```
+TBA
+```
