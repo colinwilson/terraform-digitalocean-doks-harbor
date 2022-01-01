@@ -30,7 +30,7 @@ A Terraform module to provision a highly available [Harbor Container Registry](h
 
 The default deployment of this module provisions the below resources on an existing DigitalOcean Kubernetes Cluster (**1**) (which itself can be provisioned by a [Terraform module](https://github.com/aigisuk/terraform-digitalocean-doks)).
 
-![High Availability Harbor on DigitalOcean Kubernetes](https://res.cloudinary.com/qunux/image/upload/v1641055742/harbor_doks_architecture_v1.7_vjeqku.svg)
+![High Availability Harbor on DigitalOcean Kubernetes](https://res.cloudinary.com/qunux/image/upload/v1641060974/harbor_doks_architecture_v2.0_daz9yu.svg)
 
 **1.** DigitalOcean Kubernetes Cluster (DOKS)<br>
 **2.** Spaces bucket (for image, chart & job log storage)<br>
