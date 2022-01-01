@@ -53,8 +53,6 @@ provider "helm" {
 module "harbor" {
   source = "github.com/colinwilson/terraform-digitalocean-doks-harbor"
 
-  harbor_ext_url = var.harbor_ext_url
-
   doks_cluster_name = var.doks_cluster_name
 
   spaces_access_id  = var.spaces_access_id
