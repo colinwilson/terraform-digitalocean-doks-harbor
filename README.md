@@ -30,17 +30,18 @@ A Terraform module to provision a highly available [Harbor Container Registry](h
 
 The default deployment of this module provisions the below resources on an existing DigitalOcean Kubernetes Cluster (**1**) (which itself can be provisioned by a [Terraform module](https://github.com/aigisuk/terraform-digitalocean-doks)).
 
-![High Availability Harbor on DigitalOcean Kubernetes](https://res.cloudinary.com/qunux/image/upload/v1641050956/harbor_doks_architecture_v1.6_ot6c17.svg)
+![High Availability Harbor on DigitalOcean Kubernetes](https://res.cloudinary.com/qunux/image/upload/v1641055742/harbor_doks_architecture_v1.7_vjeqku.svg)
 
 **1.** DigitalOcean Kubernetes Cluster (DOKS)<br>
 **2.** Spaces bucket (for image, chart & job log storage)<br>
 **3.** Managed PostgreSQL Database Cluster (single node)<br>
 **4.** Managed Redis Database Cluster (single node)<br>
 **5.** Harbor Service (ClusterIP)<br>
+**6.** Cluster nodes on which Harbor & supporting pods are deployed
 
 The module can also be configured to expose Harbor via Ingress with Traefik as the ingress controller, a valid TLS certificate via cert-manager and a [DigitalOcean Cloud Load Balancer](https://www.digitalocean.com/products/load-balancer/) (see this example TBA):
 
-![High Availability Harbor on DigitalOcean Kubernetes with Traefik Ingress Controller](https://res.cloudinary.com/qunux/image/upload/v1641020223/harbor_doks_architecture_v1.5_qsa44i.svg)
+![High Availability Harbor on DigitalOcean Kubernetes with Traefik Ingress Controller](https://res.cloudinary.com/qunux/image/upload/v1641055982/harbor_doks_architecture_v1.8_bzrxii.svg)
 
 **5.** Ingress Controller (e.g. Traefik)<br>
 **6.** DigitalOcean Cloud Load Balancer<br>
