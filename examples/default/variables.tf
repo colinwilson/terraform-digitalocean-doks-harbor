@@ -8,5 +8,3 @@ variable "spaces_secret_key" {}
 variable "doks_cluster_name" {}
 
 # Optional variable
-
-variable "harbor_ext_url" {}
