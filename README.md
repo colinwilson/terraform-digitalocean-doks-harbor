@@ -1,5 +1,5 @@
 # Terraform Harbor on DOKS (DigitalOcean Kubernetes) Module
-A Terraform module to provision a highly available [Harbor Container Registry](https://goharbor.io/) on a DigitalOcean Kubernetes cluster (DOKS).
+A Terraform module to provision a highly available [Harbor Container Registry](https://goharbor.io/) on a DigitalOcean Kubernetes cluster (DOKS). (Part of the [DigitalOcean Kubernetes Challange 2021](https://www.digitalocean.com/community/pages/kubernetes-challenge))
 
 ![](https://res.cloudinary.com/qunux/image/upload/v1639236111/harbor_portal_login_screenshot_2021-12-11_eymdvp.png)
 
@@ -85,3 +85,8 @@ TBA
 | database_node_count_pg | Number of nodes ot provision for the Postgres database cluster | number | `1` | no |
 | database_size_redis | Database Droplet size associated with the provisioned Redis cluster (ex. `db-s-1vcpu-1gb`) | string | `db-s-1vcpu-1gb` | no |
 | database_node_count_redis | Number of nodes ot provision for the Redis database cluster | number | `1` | no |
+
+## Outputs
+
+**TBA**
+
