@@ -1,4 +1,4 @@
-# Terraform Harbor on DOKS (DigitalOcean Kubernetes) Module
+# Terraform Module - High Availability Harbor on DOKS (DigitalOcean Kubernetes)
 A Terraform module to provision a highly available [Harbor Container Registry](https://goharbor.io/) on a DigitalOcean Kubernetes cluster (DOKS). (Part of the [DigitalOcean Kubernetes Challange 2021](https://www.digitalocean.com/community/pages/kubernetes-challenge))
 
 ![](https://res.cloudinary.com/qunux/image/upload/v1639236111/harbor_portal_login_screenshot_2021-12-11_eymdvp.png)
