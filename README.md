@@ -10,7 +10,7 @@ A Terraform module to provision a highly available [Harbor Container Registry](h
 * [x] Option to use existing Postgres & Redis clusters.
 * [x] Harbor exposed by `ClusterIP` (default).
 * [x] Expose Harbor by Ingress configured for use with Traefik.
-* [ ] Status post deployment via `outputs.tf`
+* [ ] Post deployment status via `outputs.tf`
 * [ ] Deploy `redis-proxy` DaemonSet pods only on nodes that require them.
 * [ ] Expose  Harbor via NodePort.
 * [ ] Expose Harbor via LoadBalancer.
@@ -60,3 +60,28 @@ Example output:
 ```
 TBA
 ```
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| do_token | DigitalOcean Personal Access Token | string | N/A | yes |
+| spaces_access_id | DigitalOcean Spaces Access ID | string | N/A | yes |
+| spaces_secret_key | DigitalOcean Spaces Secret Key | string | N/A | yes |
+| doks_cluster_name | Name of your DigitalOcean Kubernetes Cluster | string | N/A | yes |
+| postgres_cluster_name | Name of existing DO Managed Postgres Cluster | string | empty | no |
+| redis_cluster_name | Name of existing DO Managed Redis Cluster | string | empty | no |
+| harbor_chart_version | Harbor chart version to deploy | string | `1.8.1` | no |
+| harbor_chart_timeout_seconds | Harbor chart deployment timeout (secs) | number | `800` | no |
+| harbor_expose_type | Expose Harbor deployment via `ClusterIP`, `Ingress` (ingress supports Traefik) | string | `clusterip` | no |
+| harbor_cert_cn | Common name for the automatically generated Harbor TLS cert when using `harbor_expose_type`: `clusterip` | string | `local` | no |
+| harbor_tls_secret_name | Name of the TLS secret when using `harbor_expose_type`: `traefik` | string | empty | no |
+| harbor_tls_notary_secret_name | Name of the Notary TLS secret when using `harbor_expose_type`: `traefik` | string | empty | no |
+| harbor_ext_url | Set Harbor's external URL | string | `local` | no |
+| harbor_admin_password | Initial password of the default Harbor user `admin` | string | `Harbor12345` | no |
+| firewall_databases | Firewall both Postgres and Redis databases. Connections permitted from the specified DOKS cluster only | bool | `true` | no |
+| database_user_pg | Postgres database user name | string | `harbor` | no |
+| database_size_pg | Database Droplet size associated with the provisioned Postgres cluster (ex. `db-s-1vcpu-1gb`) | string | `db-s-1vcpu-1gb` | no |
+| database_node_count_pg | Number of nodes ot provision for the Postgres database cluster | number | `1` | no |
+| database_size_redis | Database Droplet size associated with the provisioned Redis cluster (ex. `db-s-1vcpu-1gb`) | string | `db-s-1vcpu-1gb` | no |
+| database_node_count_redis | Number of nodes ot provision for the Redis database cluster | number | `1` | no |

@@ -74,21 +74,21 @@ variable "firewall_databases" {
   default     = true
 }
 
-variable "redis_deployment" {
-  type        = string
-  description = "Deploy Redis on the DOKS cluster, or a managed Redis (managed) or none (none)."
-  default     = "managed"
-  validation {
-    condition     = length(regexall("^managed|cluster|none$", var.redis_deployment)) > 0
-    error_message = "Invalid Redis option. Valid options are managed, cluster or none."
-  }
-}
+# variable "redis_deployment" {
+#   type        = string
+#   description = "Deploy Redis on the DOKS cluster, or a managed Redis (managed) or none (none)."
+#   default     = "managed"
+#   validation {
+#     condition     = length(regexall("^managed|cluster|none$", var.redis_deployment)) > 0
+#     error_message = "Invalid Redis option. Valid options are managed, cluster or none."
+#   }
+# }
 
-variable "redis_chart_version" {
-  type        = string
-  description = "Redis Helm chart version to install"
-  default     = "15.6.4"
-}
+# variable "redis_chart_version" {
+#   type        = string
+#   description = "Redis Helm chart version to install"
+#   default     = "15.6.4"
+# }
 
 variable "database_user_pg" {
   type        = string
@@ -120,17 +120,17 @@ variable "database_node_count_redis" {
   default     = 1
 }
 
-variable "redis_addr" {
-  type        = string
-  description = "Redis DB host IP/URL"
-  default     = null
-}
+# variable "redis_addr" {
+#   type        = string
+#   description = "Redis DB host IP/URL"
+#   default     = null
+# }
 
-variable "redis_password" {
-  type        = string
-  description = "Redis DB Password"
-  default     = null
-}
+# variable "redis_password" {
+#   type        = string
+#   description = "Redis DB Password"
+#   default     = null
+# }
 
 variable "spaces_access_id" {
   type        = string
