@@ -27,7 +27,7 @@ A Terraform module to provision a highly available [Harbor Container Registry](h
 
 ## Architecture
 
-![High Availability Harbor on DigitalOcean Kubernetes](https://res.cloudinary.com/qunux/image/upload/v1641018062/harbor_doks_architecture_v1.4_wtdics.svg)
+![High Availability Harbor on DigitalOcean Kubernetes](https://res.cloudinary.com/qunux/image/upload/v1641020223/harbor_doks_architecture_v1.5_qsa44i.svg)
 
 1. DigitalOcean Kubernetes Cluster (DOKS)
 2. Spaces bucket (for image, chart & job log storage)
