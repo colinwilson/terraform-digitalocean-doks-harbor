@@ -81,6 +81,7 @@ TBA
 | redis_cluster_name | Name of existing DO Managed Redis Cluster | string | empty | no |
 | harbor_chart_version | Harbor chart version to deploy | string | `1.8.1` | no |
 | harbor_chart_timeout_seconds | Harbor chart deployment timeout (secs) | number | `800` | no |
+| values_file | Name of the custom chart values file to use (`path.root`) | string | `values.yaml` | no |
 | harbor_expose_type | Expose Harbor deployment via `ClusterIP`, `Ingress` (ingress supports Traefik) | string | `clusterip` | no |
 | harbor_cert_cn | Common name for the automatically generated Harbor TLS cert when using `harbor_expose_type`: `clusterip` | string | `local` | no |
 | harbor_tls_secret_name | Name of the TLS secret when using `harbor_expose_type`: `traefik` | string | empty | no |
