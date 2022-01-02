@@ -27,6 +27,12 @@ variable "harbor_chart_timeout_seconds" {
   default = 800 # 10 minutes
 }
 
+variable "values_file" {
+  type        = string
+  description = "Name of the custom chart values file to use"
+  default     = "values.yaml"
+}
+
 variable "harbor_expose_type" {
   type        = string
   description = "Set the method by which to expose the Harbor service."

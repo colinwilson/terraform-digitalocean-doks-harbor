@@ -10,6 +10,7 @@ A Terraform module to provision a highly available [Harbor Container Registry](h
 * [x] Option to use existing Postgres & Redis clusters.
 * [x] Harbor exposed by `ClusterIP` (default).
 * [x] Expose Harbor by Ingress configured for use with Traefik.
+* [x] Enable custom chart values via file in root path (default name; `values.yaml`).
 * [ ] Post deployment status via `outputs.tf`
 * [ ] Deploy `redis-proxy` DaemonSet pods only on nodes that require them.
 * [ ] Expose  Harbor via NodePort.
