@@ -73,10 +73,11 @@ TBA
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| do_token | DigitalOcean Personal Access Token | string | N/A | yes |
-| spaces_access_id | DigitalOcean Spaces Access ID | string | N/A | yes |
-| spaces_secret_key | DigitalOcean Spaces Secret Key | string | N/A | yes |
-| doks_cluster_name | Name of your DigitalOcean Kubernetes Cluster | string | N/A | yes |
+| **do_token** | DigitalOcean Personal Access Token | string | N/A | yes |
+| **spaces_access_id** | DigitalOcean Spaces Access ID | string | N/A | yes |
+| **spaces_secret_key** | DigitalOcean Spaces Secret Key | string | N/A | yes |
+| **doks_cluster_name** | Name of your DigitalOcean Kubernetes Cluster | string | N/A | yes |
+|&nbsp;|
 | postgres_cluster_name | Name of existing DO Managed Postgres Cluster | string | empty | no |
 | redis_cluster_name | Name of existing DO Managed Redis Cluster | string | empty | no |
 | create_namespace | Create the namespace into which Harbor will be deployed | bool | `true` | no |
