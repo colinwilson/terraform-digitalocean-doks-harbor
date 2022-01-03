@@ -79,6 +79,8 @@ TBA
 | doks_cluster_name | Name of your DigitalOcean Kubernetes Cluster | string | N/A | yes |
 | postgres_cluster_name | Name of existing DO Managed Postgres Cluster | string | empty | no |
 | redis_cluster_name | Name of existing DO Managed Redis Cluster | string | empty | no |
+| create_namespace | Create the namespace into which Harbor will be deployed | bool | `true` | no |
+| harbor_namespace | Name of the namespace into which Harbor should be deployed | string | `harbor` | no |
 | harbor_chart_version | Harbor chart version to deploy | string | `1.8.1` | no |
 | harbor_chart_timeout_seconds | Harbor chart deployment timeout (secs) | number | `800` | no |
 | values_file | Name of the custom chart values file to use (`path.root`) | string | `values.yaml` | no |
