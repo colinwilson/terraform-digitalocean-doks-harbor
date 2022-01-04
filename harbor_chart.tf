@@ -8,7 +8,7 @@ resource "helm_release" "harbor" {
   # Helm chart deployment can sometimes take longer than the default 5 minutes
   timeout = var.harbor_chart_timeout_seconds
 
-  values = [fileexists("${path.root}/${var.values_file}") == true ? file("${path.root}/${var.values_file}") : templatefile("${path.module}/custom_chart_value_tpls/${var.harbor_expose_type}.yaml.tftpl", {
+  values = [fileexists("${path.root}/${var.values_file}") == true ? file("${path.root}/${var.values_file}") : templatefile("${path.module}/custom_chart_values/${var.harbor_expose_type}.yaml.tftpl", {
 
     # Harbor chart custom values
     harbor_cert_cn                = var.harbor_cert_cn
