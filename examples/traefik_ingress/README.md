@@ -1,10 +1,10 @@
 # Traefik Ingress Deployment Example
 
-This example illustrates how to use the `terraform-digitalocean-doks-harbor` module to deploy HA Harbor Registry on an existing DOKS cluster with Traefik configured using the Kubernetes ingress provider
+This example illustrates how to use the `terraform-digitalocean-doks-harbor` module to deploy HA Harbor Registry on an existing DOKS cluster with [Traefik](https://traefik.io/traefik/) configured using its [Kubernetes Ingress provider](https://doc.traefik.io/traefik/providers/kubernetes-ingress/)
 
 ## Tutorial
 
-TBC
+[Configure Traefik to Proxy Harbor Registry on DigitalOcean Kubernetes via Terraform Modules](https://dev.colinwilson.uk/2022/01/06/configure-traefik-to-proxy-harbor-registry-on-digitalocean-kubernetes-via-terraform-modules/)
 
 ## Inputs
 
