@@ -4,7 +4,7 @@ This example illustrates how to use the `terraform-digitalocean-doks-harbor` mod
 
 ## Tutorial
 
-[Configure Traefik to Proxy Harbor Registry on DigitalOcean Kubernetes via Terraform Modules](https://dev.colinwilson.uk/2022/01/06/configure-traefik-to-proxy-harbor-registry-on-digitalocean-kubernetes-via-terraform-modules/)
+[Configure Traefik to Proxy Harbor Registry on DigitalOcean Kubernetes via Terraform Modules](https://colinwilson.uk/2022/01/06/configure-traefik-to-proxy-harbor-registry-on-digitalocean-kubernetes-via-terraform-modules/)
 
 ## Inputs
 
