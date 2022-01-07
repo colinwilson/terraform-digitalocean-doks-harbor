@@ -10,6 +10,7 @@ A Terraform module to provision a highly available [Harbor Container Registry](h
 * [x] Option to use existing Postgres & Redis clusters.
 * [x] Harbor exposed by `ClusterIP` (default).
 * [x] Expose Harbor by Ingress configured for use with Traefik.
+* [x] Enable custom chart values via file in root path (default name; `values.yaml`).
 * [ ] Post deployment status via `outputs.tf`
 * [ ] Deploy `redis-proxy` DaemonSet pods only on nodes that require them.
 * [ ] Expose  Harbor via NodePort.
@@ -26,6 +27,7 @@ A Terraform module to provision a highly available [Harbor Container Registry](h
 
 [Deploy a Harbor Container Registry with High Availability on DigitalOcean via Terraform](https://colinwilson.uk/2021/12/11/deploy-a-harbor-container-registry-with-high-availability-on-digitalocean-via-terraform/)
 
+[Configure Traefik to Proxy Harbor Registry on DigitalOcean Kubernetes via Terraform Modules](https://dev.colinwilson.uk/2022/01/06/configure-traefik-to-proxy-harbor-registry-on-digitalocean-kubernetes-via-terraform-modules/)
 ## Architecture
 
 The default deployment of this module provisions the below resources on an existing DigitalOcean Kubernetes Cluster (**1**) (which itself can be provisioned by a [Terraform module](https://github.com/aigisuk/terraform-digitalocean-doks)).
@@ -72,15 +74,19 @@ TBA
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| do_token | DigitalOcean Personal Access Token | string | N/A | yes |
-| spaces_access_id | DigitalOcean Spaces Access ID | string | N/A | yes |
-| spaces_secret_key | DigitalOcean Spaces Secret Key | string | N/A | yes |
-| doks_cluster_name | Name of your DigitalOcean Kubernetes Cluster | string | N/A | yes |
+| **do_token** | DigitalOcean Personal Access Token | string | N/A | yes |
+| **spaces_access_id** | DigitalOcean Spaces Access ID | string | N/A | yes |
+| **spaces_secret_key** | DigitalOcean Spaces Secret Key | string | N/A | yes |
+| **doks_cluster_name** | Name of your DigitalOcean Kubernetes Cluster | string | N/A | yes |
+|&nbsp;|
 | postgres_cluster_name | Name of existing DO Managed Postgres Cluster | string | empty | no |
 | redis_cluster_name | Name of existing DO Managed Redis Cluster | string | empty | no |
+| create_namespace | Create the namespace into which Harbor will be deployed | bool | `true` | no |
+| harbor_namespace | Name of the namespace into which Harbor should be deployed | string | `harbor` | no |
 | harbor_chart_version | Harbor chart version to deploy | string | `1.8.1` | no |
 | harbor_chart_timeout_seconds | Harbor chart deployment timeout (secs) | number | `800` | no |
-| harbor_expose_type | Expose Harbor deployment via `ClusterIP`, `Ingress` (ingress supports Traefik) | string | `clusterip` | no |
+| values_file | Name of the custom chart values file to use (`path.root`) | string | `values.yaml` | no |
+| harbor_expose_type | Expose Harbor deployment via `ClusterIP` or `Ingress` (`traefik` option supports Traefik) | string | `clusterip` | no |
 | harbor_cert_cn | Common name for the automatically generated Harbor TLS cert when using `harbor_expose_type`: `clusterip` | string | `local` | no |
 | harbor_tls_secret_name | Name of the TLS secret when using `harbor_expose_type`: `traefik` | string | empty | no |
 | harbor_tls_notary_secret_name | Name of the Notary TLS secret when using `harbor_expose_type`: `traefik` | string | empty | no |

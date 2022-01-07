@@ -1,0 +1,67 @@
+expose:
+  type: ingress
+  tls:
+    certSource: secret
+    secret:
+      secretName: ${harbor_tls_secret_name}
+      notarySecretName: ${harbor_tls_notary_secret_name}
+  ingress:
+    hosts:
+      core: harbor.${harbor_ext_url}
+      notary: notary.${harbor_ext_url}
+
+externalURL: https://harbor.${harbor_ext_url}
+
+persistence:
+  imageChartStorage:
+    disableredirect: true
+    type: s3
+    s3:
+      region: us-east-1
+      bucket: ${spaces_bucket_name}
+      accesskey: ${spaces_access_id}
+      secretkey: ${spaces_secret_key}
+      regionendpoint: ${spaces_endpoint}
+
+portal:
+  replicas: 2
+
+core:
+  replicas: 2
+
+jobservice:
+  replicas: 2
+  jobLoggers:
+    - database
+
+registry:
+  replicas: 2
+
+chartmuseum:
+  replicas: 2
+
+notary:
+  server:
+    replicas: 2
+  signer:
+    replicas: 2
+
+database:
+  type: external
+  external:
+    host: ${pg_cluster_host}
+    port: ${pg_cluster_port}
+    username: ${pg_cluster_username}
+    password: ${pg_cluster_password}
+    coreDatabase: "registry"
+    notaryServerDatabase: "notary_server"
+    notarySignerDatabase: "notary_signer"
+    sslmode: "require"
+
+redis:
+  type: external
+  external:
+    addr: ${redis_addr}
+    password: ${redis_password}
+
+harborAdminPassword: ${harbor_admin_password}

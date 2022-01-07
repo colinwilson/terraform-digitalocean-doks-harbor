@@ -15,6 +15,18 @@ variable "redis_cluster_name" {
   default     = ""
 }
 
+variable "create_namespace" {
+  type        = bool
+  description = "Create the namespace into which Harbor will be deployed"
+  default     = true
+}
+
+variable "harbor_namespace" {
+  type        = string
+  description = "Namespace in which to deploy Harbor"
+  default     = "harbor"
+}
+
 variable "harbor_chart_version" {
   type        = string
   description = "Harbor Helm chart version to install"
@@ -25,6 +37,12 @@ variable "harbor_chart_version" {
 variable "harbor_chart_timeout_seconds" {
   type    = number
   default = 800 # 10 minutes
+}
+
+variable "values_file" {
+  type        = string
+  description = "Name of the custom chart values file to use"
+  default     = "values.yaml"
 }
 
 variable "harbor_expose_type" {

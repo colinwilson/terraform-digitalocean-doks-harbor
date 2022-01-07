@@ -14,7 +14,6 @@ expose:
       kubernetes.io/ingress.class: traefik
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
       traefik.ingress.kubernetes.io/router.tls: "true"
-      # traefik.ingress.kubernetes.io/router.middlewares: harbor-redirect-to-https@kubernetescrd
 
 externalURL: https://harbor.${harbor_ext_url}
 
