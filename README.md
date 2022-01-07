@@ -27,7 +27,7 @@ A Terraform module to provision a highly available [Harbor Container Registry](h
 
 [Deploy a Harbor Container Registry with High Availability on DigitalOcean via Terraform](https://colinwilson.uk/2021/12/11/deploy-a-harbor-container-registry-with-high-availability-on-digitalocean-via-terraform/)
 
-[Configure Traefik to Proxy Harbor Registry on DigitalOcean Kubernetes via Terraform Modules](https://dev.colinwilson.uk/2022/01/06/configure-traefik-to-proxy-harbor-registry-on-digitalocean-kubernetes-via-terraform-modules/)
+[Configure Traefik to Proxy Harbor Registry on DigitalOcean Kubernetes via Terraform Modules](https://colinwilson.uk/2022/01/06/configure-traefik-to-proxy-harbor-registry-on-digitalocean-kubernetes-via-terraform-modules/)
 ## Architecture
 
 The default deployment of this module provisions the below resources on an existing DigitalOcean Kubernetes Cluster (**1**) (which itself can be provisioned by a [Terraform module](https://github.com/aigisuk/terraform-digitalocean-doks)).
