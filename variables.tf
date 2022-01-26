@@ -15,12 +15,6 @@ variable "redis_cluster_name" {
   default     = ""
 }
 
-variable "create_namespace" {
-  type        = bool
-  description = "Create the namespace into which Harbor will be deployed"
-  default     = true
-}
-
 variable "harbor_namespace" {
   type        = string
   description = "Namespace in which to deploy Harbor"

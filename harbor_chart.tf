@@ -1,9 +1,10 @@
 resource "helm_release" "harbor" {
-  name       = "harbor-v${replace(var.harbor_chart_version, ".", "-")}"
-  namespace  = local.namespace
-  repository = "https://helm.goharbor.io"
-  chart      = "harbor"
-  version    = var.harbor_chart_version
+  name             = "harbor"
+  namespace        = var.harbor_namespace
+  create_namespace = true
+  repository       = "https://helm.goharbor.io"
+  chart            = "harbor"
+  version          = var.harbor_chart_version
 
   # Helm chart deployment can sometimes take longer than the default 5 minutes
   timeout = var.harbor_chart_timeout_seconds
