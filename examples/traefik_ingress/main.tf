@@ -58,7 +58,6 @@ module "harbor" {
   spaces_access_id  = var.spaces_access_id
   spaces_secret_key = var.spaces_secret_key
 
-  create_namespace              = var.create_namespace
   harbor_expose_type            = var.harbor_expose_type
   harbor_ext_url                = var.harbor_ext_url
   harbor_tls_secret_name        = var.harbor_tls_secret_name
