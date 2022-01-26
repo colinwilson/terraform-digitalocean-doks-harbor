@@ -7,3 +7,4 @@ terraform.txt
 creds/
 .vscode/
 debug.log
+.idea/
